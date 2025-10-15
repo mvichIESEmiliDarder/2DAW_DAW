@@ -1,4 +1,4 @@
->ℹ️ **Info**
+>[!TIP]**Info**
 >Aquest curs està pres integrament de la pàgina [Taller de Git](https://aulasoftwarelibre.github.io/taller-de-git/). La seva llicència original permet la reutilització difusió del mateix.
 >Donem les gràcies des d'aquí a [Aula de Software Libre de la Universidad de Córdoba](https://www.uco.es/aulasoftwarelibre).
 # Inicio
@@ -272,6 +272,8 @@ git commit -m "Creación del proyecto"
 
 ```
 
+![[Pasted image 20250801174901.png]]
+
 ![[Pasted image 20250801134511.png]]
 *Gráficos hechos con "Mermaid Chart"*. Documentación [aquí](https://docs.mermaidchart.com/blog/posts/how-to-make-a-git-graph-with-mermaid-chart).
 ### Comprobar el estado del repositorio
@@ -280,8 +282,8 @@ Con la orden `git status` podemos ver en qué estado se encuentran los archivo
 
 ```bash
 git status
-# On branch main
-nothing to commit (working directory clean)
+En la rama master
+nada para hacer commit, el árbol de trabajo está limpio
 ```
 
 Si modificamos el archivo `hola.php`:
@@ -295,14 +297,13 @@ Y volvemos a comprobar el estado del repositorio:
 
 ```bash
 git status
-# On branch main
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#   modified:   hola.php
-#
-no changes added to commit (use "git add" and/or "git commit -a")
+En la rama master
+Cambios no rastreados para el commit:
+  (usa "git add <archivo>..." para actualizar lo que será confirmado)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+	modificados:     hola.php
+
+sin cambios agregados al commit (usa "git add" y/o "git commit -a")
 ```
 
 ### Añadir cambios
@@ -311,12 +312,10 @@ Con la orden `git add` indicamos a git que prepare los cambios para que sean a
 ```bash
 git add hola.php
 git status
-# On branch main
-# Changes to be committed:
-#   (use "git reset HEAD <file>..." to unstage)
-#
-#   modified:   hola.php
-#
+En la rama master
+Cambios a ser confirmados:
+  (usa "git restore --staged <archivo>..." para sacar del área de stage)
+	modificados:     hola.php
 ```
 
 ### Confirmar los cambios
@@ -325,12 +324,11 @@ Con la orden `git commit` confirmamos los cambios definitivamente, lo que hace
 
 ```bash
 git commit -m "Parametrización del programa"
-[main efc252e] Parametrización del programa
+[master 03f5c1c] Parametrización del programa
  1 file changed, 1 insertion(+), 1 deletion(-)
-git status
-# On branch main
-nothing to commit (working directory clean)
 ```
+
+![[Pasted image 20250801175346.png]]
 
 ![[Pasted image 20250801135647.png]]
 
@@ -363,60 +361,53 @@ Y vemos el estado en el que está el repositorio
 
 ```bash
 git status
-# On branch main
-# Changes to be committed:
-#   (use "git reset HEAD <file>..." to unstage)
-#
-#   modified:   hola.php
-#
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#   modified:   hola.php
-#
+En la rama master
+Cambios a ser confirmados:
+  (usa "git restore --staged <archivo>..." para sacar del área de stage)
+	modificados:     hola.php
+
+Cambios no rastreados para el commit:
+  (usa "git add <archivo>..." para actualizar lo que será confirmado)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+	modificados:     hola.php
 ```
 
 Podemos ver como aparecen el archivo _hola.php_ dos veces. El primero está preparado para ser confirmado y está almacenado en la zona de _staging_. El segundo indica que el directorio hola.php está modificado otra vez en la zona de trabajo (_workdir_).
 
 >⚠️ **Warning**
-Si volvieramos a hacer un `git add hola.php` sobreescribiríamos los cambios previos que había en la zona de _staging_.
+ Si volvieramos a hacer un `git add hola.php` sobreescribiríamos los cambios previos que había en la zona de _staging_.
 
 Almacenamos los cambios por separado:
 
 ```bash
 git commit -m "Se añade un parámetro por defecto"
-[main 3283e0d] Se añade un parámetro por defecto
- 1 file changed, 2 insertions(+), 1 deletion(-)
+[master 1cfddf9] Se añade un parámetro por defecto
+ 1 file changed, 1 insertion(+)
 git status
-# On branch main
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#   modified:   hola.php
-#
-no changes added to commit (use "git add" and/or "git commit -a")
+En la rama master
+Cambios no rastreados para el commit:
+  (usa "git add <archivo>..." para actualizar lo que será confirmado)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+	modificados:     hola.php
+
+sin cambios agregados al commit (usa "git add" y/o "git commit -a")
 git add .
 git status
-# On branch main
-# Changes to be committed:
-#   (use "git reset HEAD <file>..." to unstage)
-#
-#   modified:   hola.php
-#
-git commit -m "Se añade un comentario al cambio del valor por defecto"
-[main fd4da94] Se añade un comentario al cambio del valor por defecto
- 1 file changed, 1 insertion(+)
+En la rama master
+Cambios a ser confirmados:
+  (usa "git restore --staged <archivo>..." para sacar del área de stage)
+	modificados:     hola.php
 ```
+
+![[Pasted image 20250801175727.png]]
 
 ![[Pasted image 20250801135955.png]]
 
 >ℹ️ **Info**
-El valor "." despues de `git add` indica que se añadan todos los archivos de forma recursiva.
+ El valor "." despues de `git add` indica que se añadan todos los archivos de forma recursiva.
 
 >⚠️ **Warning**
-Cuidado cuando uses `git add .` asegúrate de que no estás añadiendo archivos que no quieres añadir.
+ Cuidado cuando uses `git add .` asegúrate de que no estás añadiendo archivos que no quieres añadir.
 
 ### Ignorando archivos
 
@@ -436,7 +427,6 @@ dir3/**/*.txt   # ignora todos los archivos txt que hay en el dir3 y sus subdire
 ```
 
 Cada tipo de proyecto genera sus ficheros temporales, así que para cada proyecto hay un `.gitignore` apropiado. Existen repositorios que ya tienen creadas plantillas. Podéis encontrar uno en [https://github.com/github/gitignore](https://github.com/github/gitignore)
-
 ### Ignorando archivos globalmente
 
 Si bien, los archivos que hemos metido en `.gitignore`, deben ser aquellos ficheros temporales o de configuración que se pueden crear durante las fases de compilación o ejecución del programa, en ocasiones habrá otros ficheros que tampoco debemos introducir en el repositorio y que son recurrentes en todos los proyectos. En dicho caso, es más útil tener un _gitignore_ que sea global a todos nuestros proyectos. Esta configuración sería complementaria a la que ya tenemos. Ejemplos de lo que se puede ignorar de forma global son los ficheros temporales del sistema operativo (`*~`, `.nfs*`) y los que generan los entornos de desarrollo.
@@ -506,27 +496,21 @@ Con la orden `git log` podemos ver todos los cambios que hemos hecho:
 
 ```bash
 git log
-commit fd4da946326fbe8b24e89282ad25a71721bf40f6
-Author: Sergio Gómez <sergio@uco.es>
-Date:   Sun Jun 16 12:51:01 2013 +0200
-
-    Se añade un comentario al cambio del valor por defecto
-
-commit 3283e0d306c8d42d55ffcb64e456f10510df8177
-Author: Sergio Gómez <sergio@uco.es>
-Date:   Sun Jun 16 12:50:00 2013 +0200
+commit 1cfddf928af6df33e94ce6644f5b7ee2524aaa51 (HEAD -> master)
+Author: marti <marti.vich@gmail.com>
+Date:   Fri Aug 1 17:55:53 2025 +0200
 
     Se añade un parámetro por defecto
 
-commit efc252e11939351505a426a6e1aa5bb7dc1dd7c0
-Author: Sergio Gómez <sergio@uco.es>
-Date:   Sun Jun 16 12:13:26 2013 +0200
+commit 03f5c1c415d0f9010b4a1ae3cc63523ab9efa6c4
+Author: marti <marti.vich@gmail.com>
+Date:   Fri Aug 1 17:53:08 2025 +0200
 
     Parametrización del programa
 
-commit e19f2c1701069d9d1159e9ee21acaa1bbc47d264
-Author: Sergio Gómez <sergio@uco.es>
-Date:   Sun Jun 16 11:55:23 2013 +0200
+commit ce4fd761e3fc738ec8bf3dc9a8ed50b1fd3fcd1b
+Author: marti <marti.vich@gmail.com>
+Date:   Fri Aug 1 17:12:58 2025 +0200
 
     Creación del proyecto
 ```
@@ -535,37 +519,43 @@ También es posible ver versiones abreviadas o limitadas, dependiendo de los par
 
 ```bash
 git log --oneline
-fd4da94 Se añade un comentario al cambio del valor por defecto
-3283e0d Se añade un parámetro por defecto
-efc252e Parametrización del programa
-e19f2c1 Creación del proyecto
-git log --oneline --max-count=2
-git log --oneline --since='5 minutes ago'
-git log --oneline --until='5 minutes ago'
-git log --oneline --author=sergio
-git log --oneline --all
+1cfddf9 (HEAD -> master) Se añade un parámetro por defecto
+03f5c1c Parametrización del programa
+ce4fd76 Creación del proyecto
 ```
 
 Una versión muy útil de `git log` es la siguiente, pues nos permite ver en que lugares está main y HEAD, entre otras cosas:
 
 ```bash
 git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (HEAD, main) [Sergio Gómez]
-* 3283e0d 2013-06-16 | Se añade un parámetro por defecto [Sergio Gómez]
-* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
-* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+* 1cfddf9 2025-08-01 | Se añade un parámetro por defecto (HEAD -> master) [marti]
+* 03f5c1c 2025-08-01 | Parametrización del programa [marti]
+* ce4fd76 2025-08-01 | Creación del proyecto [marti]
 ```
 
 ### Crear alias
 
-Como estas órdenes son demasiado largas, Git nos permite crear alias para crear nuevas órdenes parametrizadas. Para ello podemos configurar nuestro entorno con la orden `git config` de la siguiente manera:
+Como estas órdenes son demasiado largas, Git nos permite crear alias para crear nuevas órdenes parametrizadas.  La forma más común y recomendada de crear un alias es usando el comando `git config` con la bandera `--global` para que el alias esté disponible en todos tus repositorios.
 
-```bash
-git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+La sintaxis es la siguiente:
+
+```
+git config --global alias.<nombre-del-alias> <comando-real>
 ```
 
+Aquí tienes algunos ejemplos de los alias más comunes que la gente usa:
+#### Ejemplos de alias simples:
+
+- **`st` para `status`:**
+  
+    ```
+    git config --global alias.st status
+    # Ahora puedes escribir 'git st' en lugar de 'git status'
+    ```
+
+
 >✍️ **Example**
-Puedes configurar incluso alias para abreviar comandos. Algunos ejemplos de alias útiles:
+ Puedes configurar incluso alias para abreviar comandos. Algunos ejemplos de alias útiles:
 
 ```bash
 git config --global alias.br branch
